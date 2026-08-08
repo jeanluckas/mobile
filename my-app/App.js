@@ -1,10 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button, Pressable, Platform} from 'react-native';
 
 export default function App() {
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>
+      <Button
+        title="Botao"
+        color="#841584"
+        accessibilityLabel="Um botao"
+      />
+      <Pressable>
+        <Text>I'm pressable!</Text>
+      </Pressable>
       <StatusBar style="auto" />
     </View>
   );
