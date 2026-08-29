@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
   return (
@@ -63,7 +63,7 @@ export default function App() {
 
       <View style={styles.viewBotao}>
         <View style={styles.botao}>
-          <Text style={{color: "white", fontWeight: "bold"}}>VER SEMANA COMPLETA</Text>
+          <Button title="VER SEMANA COMPLETA" color="white"></Button>
         </View>
       </View>
 
