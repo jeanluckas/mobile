@@ -28,27 +28,27 @@ export default function App() {
         <View style={styles.proxDiasQuadrado}>
           <Text>Qua</Text>
           <View style={styles.quadradoProxDias}></View>
-          <Text>22°</Text>
+          <Text style={styles.textoProxDias}>22°</Text>
         </View>
         <View style={styles.proxDiasQuadrado}>
           <Text>Qui</Text>
           <View style={styles.quadradoProxDias}></View>
-          <Text>19°</Text>
+          <Text style={styles.textoProxDias}>19°</Text>
         </View>
         <View style={styles.proxDiasQuadrado}>
           <Text>Sex</Text>
           <View style={styles.quadradoProxDias}></View>
-          <Text>17°</Text>
+          <Text style={styles.textoProxDias}>17°</Text>
         </View>
         <View style={styles.proxDiasQuadrado}>
           <Text>Sáb</Text>
           <View style={styles.quadradoProxDias}></View>
-          <Text>21°</Text>
+          <Text style={styles.textoProxDias}>21°</Text>
         </View>
         <View style={styles.proxDiasQuadrado}>
           <Text>Dom</Text>
           <View style={styles.quadradoProxDias}></View>
-          <Text>25°</Text>
+          <Text style={styles.textoProxDias}>25°</Text>
         </View>
       </View>
 
@@ -110,8 +110,8 @@ const styles = StyleSheet.create({
   },
 
   quadradoProxDias: {
-    width: 50,
-    height: 50,
+    width: 35,
+    height: 35,
     backgroundColor: "#99b8de",
     borderRadius: 15
   },
@@ -122,7 +122,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#d0cfd4",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 15
+    borderRadius: 15,
+    gap: 5
   },
 
   menuProxDias: {
@@ -159,5 +160,9 @@ const styles = StyleSheet.create({
 
   viewBotao: {
     padding: 10
+  },
+
+  textoProxDias: {
+    fontWeight: "bold"
   }
 });
