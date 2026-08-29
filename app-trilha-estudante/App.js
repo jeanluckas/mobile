@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
 
 export default function App() {
   return (
@@ -12,24 +12,21 @@ export default function App() {
         </View>
       </View>
 
-      <View style={styles.viewMenu}>
-        <Text style={{ fontWeight: "bold", fontSize: 20 }}>Menu</Text>
-      </View>
-
+      <Text style={{ fontWeight: "bold", fontSize: 20,  }}>Menu</Text>
       <View style={styles.botoesMenu}>
         <View style={styles.botaoPlaylists}>
-          <Text style={styles.textoBotoes}>PLAYLISTS</Text>
+          <Button title="PLAYLISTS" color="white" />
         </View>
         <View style={styles.botaoArtistas}>
-          <Text style={styles.textoBotoes}>ARTISTAS</Text>
+          <Button title="ARTISTAS" color="white" />
         </View>
         <View style={styles.botaoRadio}>
-          <Text style={styles.textoBotoes}>RÁDIO</Text>
+          <Button title="RÁDIO" color="white" />
         </View>
       </View>
 
       <View style={styles.viewTocadasRec}>
-        <Text style={{fontWeight: "bold", fontSize: 15}}>Tocadas recentemente</Text>
+        <Text style={{ fontWeight: "bold", fontSize: 15 }}>Tocadas recentemente</Text>
       </View>
     </View>
   );
@@ -39,7 +36,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'flex-start',
     paddingTop: 50,
     padding: 15
