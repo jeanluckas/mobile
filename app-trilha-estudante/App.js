@@ -31,7 +31,7 @@ export default function App() {
       <ScrollView style={styles.scrollView}>
         <View style={styles.areaMusicas}>
           <View style={styles.listaMusicas}>
-            <View style={styles.caixaMusica}>
+            <View style={styles.caixaMusicaTocando}>
               <View style={styles.descMusica}>
                 <Text style={{ fontSize: 18 }}>Thunderstruck</Text>
                 <Text style={{ fontSize: 15, color: "gray" }}>AC/DC tocando agora!</Text>
@@ -212,6 +212,18 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     backgroundColor: "#D3D3D3",
+    borderRadius: 15,
+    borderWidth: 1,
+    padding: 15,
+  },
+
+  caixaMusicaTocando: {
+    width: "100%",
+    height: 85,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#b5f199",
     borderRadius: 15,
     borderWidth: 1,
     padding: 15,
