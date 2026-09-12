@@ -42,7 +42,7 @@ export default function App() {
 const styles = StyleSheet.create({
   tela: {
     flex: 1,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "#2c2f35",
     paddingHorizontal: 16,
     paddingTop: 16,
   },
@@ -64,17 +64,17 @@ const styles = StyleSheet.create({
   saudacao: {
     fontSize: 22,
     fontWeight: "bold",
-    color: "#111827",
+    color: "#FFFFFF",
   },
 
   subtitulo: {
     fontSize: 14,
-    color: "#6B7280",
+    color: "#FFFFFF",
     marginTop: 2,
   },
 
   cartao: {
-    backgroundColor: "#F1F3F6",
+    backgroundColor: "white",
     borderRadius: 12,
     padding: 16,
     marginBottom: 12,

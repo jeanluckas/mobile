@@ -8,7 +8,7 @@ export default function Layout() {
           topo. O botão de voltar e a animação vêm de graça. */}
       <Stack
         screenOptions={{
-          headerStyle: { backgroundColor: "#57a7dd" },
+          headerStyle: { backgroundColor: "#06060a" },
           headerTintColor: "#FFFFFF",
         }}
       />
