@@ -123,8 +123,9 @@ export default function App() {
           <Button title="ASSINAR AGORA" color="white" />
         </View>
       </View>
-      <Button title="VOLTAR" onPress={() => router.back()} />
-
+      <View style={styles.voltar}>
+        <Button title="VOLTAR" onPress={() => router.back()} />
+      </View>
     </SafeAreaView>
   );
 }
@@ -135,7 +136,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'flex-start',
     justifyContent: 'flex-start',
-    padding: 15
+    padding: 10
   },
 
   fotoPerfil: {
@@ -264,6 +265,10 @@ const styles = StyleSheet.create({
     padding: 20,
     gap: 10,
     width: "100%"
+  },
+
+  voltar: {
+    width: "100%",
   }
 
 });

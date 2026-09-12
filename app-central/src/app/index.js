@@ -82,8 +82,8 @@ const styles = StyleSheet.create({
   },
 
   cartaoTitulo: {
-    fontSize: 16,
-    fontWeight: "600",
+    fontSize: 18,
+    fontWeight: "bold",
     color: "#111827",
   },
 
