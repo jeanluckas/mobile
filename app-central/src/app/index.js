@@ -35,6 +35,13 @@ export default function App() {
           Abrir →
         </Link>
       </View>
+
+      <View style={styles.cartao}>
+        <Text style={styles.cartaoTitulo}>App Contador</Text>
+        <Link href="/contador" style={styles.link}>
+          Abrir →
+        </Link>
+      </View>
     </SafeAreaView>
   );
 }
