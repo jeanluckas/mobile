@@ -42,6 +42,13 @@ export default function App() {
           Abrir →
         </Link>
       </View>
+
+      <View style={styles.cartao}>
+        <Text style={styles.cartaoTitulo}>App Lista</Text>
+        <Link href="/listas" style={styles.link}>
+          Abrir →
+        </Link>
+      </View>
     </SafeAreaView>
   );
 }
