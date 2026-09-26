@@ -49,6 +49,13 @@ export default function App() {
           Abrir →
         </Link>
       </View>
+
+      <View style={styles.cartao}>
+        <Text style={styles.cartaoTitulo}>App Bordel</Text>
+        <Link href="/bordel" style={styles.link}>
+          Abrir →
+        </Link>
+      </View>
     </SafeAreaView>
   );
 }

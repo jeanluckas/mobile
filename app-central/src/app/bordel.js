@@ -4,32 +4,27 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useEffect, useState } from "react";
 import * as SQLite from "expo-sqlite";
 
-const db = SQLite.openDatabaseSync("tarefas.db");
+const db = SQLite.openDatabaseSync("bordel.db");
 
 db.execSync(`
-  CREATE TABLE IF NOT EXISTS tarefas (
+  CREATE TABLE IF NOT EXISTS nome (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     texto TEXT NOT NULL
   );
 `);
 
 function listar() {
-  return db.getAllSync("SELECT * FROM tarefas ORDER BY id DESC");
+  return db.getAllSync("SELECT * FROM nome ORDER BY id DESC");
 }
 
 function adicionar(texto) {
-  db.runSync("INSERT INTO tarefas (texto) VALUES (?)", [texto]);
+  db.runSync("INSERT INTO nome (texto) VALUES (?)", [texto]);
 }
 
 export default function App() {
 
     const [texto, setTexto] = useState("");
     const [lista, setLista] = useState([]);
-
-    //function adicionar() {
-    //    setLista([...lista, texto]);
-    //    setTexto("");
-    //}
 
     function carregar() {
         setLista(listar());
@@ -47,15 +42,16 @@ export default function App() {
 
     return (
         <SafeAreaView style={styles.main}>
-            <Stack.Screen options={{ title: "App Lista" }} />
+            <Stack.Screen options={{ title: "App Bordel" }} />
+            <Text style={styles.titulo}>Cadastro de bordel</Text>
             <TextInput
                 style={styles.input}
                 value={texto}
                 onChangeText={setTexto}
-                placeholder="Nova tarefa"
+                placeholder="Nova acompanhante"
             />
             <View style={styles.botao}>
-                <Button title="Adicionar" onPress={salvar} />
+                <Button title="Adicionar" color="#000000" onPress={salvar} />
             </View>
 
             <FlatList
@@ -82,6 +78,11 @@ const styles = StyleSheet.create({
         gap: 10
     },
 
+    titulo: {
+        fontWeight: "bold",
+        fontSize: 25
+    },
+
     input: {
         borderWidth: 1,
         borderColor: "#D9DDE3",
@@ -94,20 +95,20 @@ const styles = StyleSheet.create({
     },
 
     caixaLista: {
-        backgroundColor: "#f2d177",
+        backgroundColor: "#f277e2",
         width: 200,
         alignItems: "center",
         padding: 5,
         borderWidth: 1,
-        borderColor: "#a38534"
+        borderColor: "#000000"
 
     },
 
     botao: {
-        backgroundColor: "#f2d177",
+        backgroundColor: "#f277e2",
         borderRadius: 15,
         width: 150,
-        borderColor: "#a38534",
+        borderColor: "#000000",
         borderWidth: 1
 
     }

@@ -5,7 +5,8 @@
     "scheme": "aula1109",
     "plugins": [
       "expo-router",
-      "expo-status-bar"
+      "expo-status-bar",
+      "expo-sqlite"
     ]
   }
 }
