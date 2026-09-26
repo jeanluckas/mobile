@@ -7,38 +7,48 @@ import * as SQLite from "expo-sqlite";
 const db = SQLite.openDatabaseSync("bordel.db");
 
 db.execSync(`
-  CREATE TABLE IF NOT EXISTS nome (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    texto TEXT NOT NULL
+    DROP TABLE bordel;
+
+    CREATE TABLE IF NOT EXISTS bordel (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        texto VARCHAR(255) NOT NULL,
+        cor VARCHAR(255) NOT NULL
   );
 `);
 
 function listar() {
-  return db.getAllSync("SELECT * FROM nome ORDER BY id DESC");
+    return db.getAllSync("SELECT * FROM bordel ORDER BY id DESC");
 }
 
-function adicionar(texto) {
-  db.runSync("INSERT INTO nome (texto) VALUES (?)", [texto]);
+function adicionar(texto, cor) {
+    db.runSync("INSERT INTO bordel (texto, cor) VALUES (?, ?)", [texto, cor]);
 }
 
 export default function App() {
 
     const [texto, setTexto] = useState("");
     const [lista, setLista] = useState([]);
+    const [cor, setCor] = useState("");
 
     function carregar() {
         setLista(listar());
-      }
-    
-      useEffect(() => {
+    }
+
+    useEffect(() => {
         carregar();
-      }, []);
-    
-      function salvar() {
-        adicionar(texto);
+    }, []);
+
+    function salvar() {
+        adicionar(texto, cor);
         setTexto("");
+        setCor("");
         carregar();
-      }
+    }
+
+    function excluir(id) {
+        db.runSync("DELETE FROM bordel WHERE id = ?", id);
+        carregar();
+    }
 
     return (
         <SafeAreaView style={styles.main}>
@@ -48,8 +58,15 @@ export default function App() {
                 style={styles.input}
                 value={texto}
                 onChangeText={setTexto}
-                placeholder="Nova acompanhante"
+                placeholder="Novo bordel"
             />
+            <TextInput
+                style={styles.input}
+                value={cor}
+                onChangeText={setCor}
+                placeholder="Cor"
+            />
+
             <View style={styles.botao}>
                 <Button title="Adicionar" color="#000000" onPress={salvar} />
             </View>
@@ -60,6 +77,8 @@ export default function App() {
                 renderItem={({ item }) => (
                     <View style={styles.caixaLista}>
                         <Text style={styles.item}>{item.texto}</Text>
+                        <Text style={styles.item}>Cor: {item.cor}</Text>
+                        <Button title="Excluir" color="#000000" onPress={() => excluir(item.id)} />
                     </View>)}
             />
 
