@@ -7,8 +7,6 @@ import * as SQLite from "expo-sqlite";
 const db = SQLite.openDatabaseSync("bordel.db");
 
 db.execSync(`
-    DROP TABLE bordel;
-
     CREATE TABLE IF NOT EXISTS bordel (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         texto VARCHAR(255) NOT NULL,
@@ -59,12 +57,14 @@ export default function App() {
                 value={texto}
                 onChangeText={setTexto}
                 placeholder="Novo bordel"
+                placeholderTextColor="#555"
             />
             <TextInput
                 style={styles.input}
                 value={cor}
                 onChangeText={setCor}
                 placeholder="Cor"
+                placeholderTextColor="#555"
             />
 
             <View style={styles.botao}>
@@ -76,9 +76,9 @@ export default function App() {
                 data={lista}
                 renderItem={({ item }) => (
                     <View style={styles.caixaLista}>
-                        <Text style={styles.item}>{item.texto}</Text>
+                        <Text style={styles.item}>Nome: {item.texto}</Text>
                         <Text style={styles.item}>Cor: {item.cor}</Text>
-                        <Button title="Excluir" color="#000000" onPress={() => excluir(item.id)} />
+                        <Button title="Excluir" color="#ff0000" onPress={() => excluir(item.id)} />
                     </View>)}
             />
 
@@ -114,21 +114,29 @@ const styles = StyleSheet.create({
     },
 
     caixaLista: {
-        backgroundColor: "#f277e2",
-        width: 200,
+        backgroundColor: "#d5f2f3",
+        width: "100%",
         alignItems: "center",
+        justifyContent: "space-around",
+        flexDirection: "row",
         padding: 5,
         borderWidth: 1,
-        borderColor: "#000000"
+        borderColor: "#000000",
+        
+
 
     },
 
     botao: {
-        backgroundColor: "#f277e2",
+        backgroundColor: "#d5f2f3",
         borderRadius: 15,
         width: 150,
         borderColor: "#000000",
         borderWidth: 1
 
+    },
+    
+    lista: {
+        padding: 10
     }
 });
