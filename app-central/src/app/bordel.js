@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     },
 
     caixaLista: {
-        backgroundColor: "#d5f2f3",
+        backgroundColor: "#ffffff",
         width: "100%",
         alignItems: "center",
         justifyContent: "space-around",
