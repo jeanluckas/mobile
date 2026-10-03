@@ -75,10 +75,14 @@ export default function App() {
         setNomeCientifico(flor.nomecientifico)
     }
 
+    useEffect(() => {
+        carregar();
+    }, []);
+
     return (
         <SafeAreaView style={styles.main}>
-            <Stack.Screen options={{ title: "App Bordel" }} />
-            <Text style={styles.titulo}>Cadastro de bordel</Text>
+            <Stack.Screen options={{ title: "App Flor" }} />
+            <Text style={styles.titulo}>Cadastro de flores</Text>
             <TextInput
                 style={styles.input}
                 value={nome}
@@ -110,17 +114,21 @@ export default function App() {
                 data={lista}
                 renderItem={({ item }) => (
                     <View style={styles.caixaLista}>
-                        <Text style={styles.item}>Nome: {item.nome}</Text>
-                        <Text style={styles.item}>Cor: {item.cor}</Text>
-                        <Text style={styles.item}>Cor: {item.nomecientifico}</Text>
-
-                        <Button title="Editar" color="#ff0000" onPress={() => editar(item)} />
-                        <Button title="Excluir" color="#ff0000" onPress={() => remover(item.id)} />
-                    </View>)}
+                        <View>
+                            <Text style={styles.item}>Nome: {item.nome}</Text>
+                            <Text style={styles.item}>Cor: {item.cor}</Text>
+                            <Text style={styles.item}>Cor: {item.nomecientifico}</Text>
+                        </View>
+                        <View>
+                            <Button title="Editar" color="#000000" onPress={() => editar(item)} />
+                            <Button title="Excluir" color="#000000" onPress={() => remover(item.id)} />
+                        </View>
+                    </View>)
+                }
             />
 
-            <Button title="VOLTAR" onPress={() => router.back()} />
-        </SafeAreaView>
+            < Button title="VOLTAR" onPress={() => router.back()} />
+        </SafeAreaView >
     );
 }
 
@@ -159,9 +167,7 @@ const styles = StyleSheet.create({
         padding: 5,
         borderWidth: 1,
         borderColor: "#000000",
-
-
-
+        marginBottom: 8
     },
 
     botao: {
@@ -174,6 +180,6 @@ const styles = StyleSheet.create({
     },
 
     lista: {
-        padding: 10
+        padding: 10,
     }
 });
