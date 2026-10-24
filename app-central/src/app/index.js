@@ -1,10 +1,11 @@
 import { Link, Stack } from "expo-router";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function App() {
   return (
     <SafeAreaView style={styles.tela} edges={["bottom"]}>
+
       {/* Cada tela pode mexer no próprio cabeçalho */}
       <Stack.Screen options={{ title: "Painel" }} />
 
@@ -15,54 +16,79 @@ export default function App() {
         </View>
       </View>
 
-      <View style={styles.cartao}>
-        <Text style={styles.cartaoTitulo}>App Spotify</Text>
-        <Link href="/app-spotify" style={styles.link}>
-          Abrir →
-        </Link>
-      </View>
+      <ScrollView style={styles.scrollView}>
 
-      <View style={styles.cartao}>
-        <Text style={styles.cartaoTitulo}>App Tempo</Text>
-        <Link href="/app-tempo" style={styles.link}>
-          Abrir →
-        </Link>
-      </View>
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>App Spotify</Text>
+          <Link href="/app-spotify" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
 
-      <View style={styles.cartao}>
-        <Text style={styles.cartaoTitulo}>App Trilha Estudante</Text>
-        <Link href="/app-trilha-estudante" style={styles.link}>
-          Abrir →
-        </Link>
-      </View>
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>App Tempo</Text>
+          <Link href="/app-tempo" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
 
-      <View style={styles.cartao}>
-        <Text style={styles.cartaoTitulo}>App Contador</Text>
-        <Link href="/contador" style={styles.link}>
-          Abrir →
-        </Link>
-      </View>
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>App Trilha Estudante</Text>
+          <Link href="/app-trilha-estudante" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
 
-      <View style={styles.cartao}>
-        <Text style={styles.cartaoTitulo}>App Lista</Text>
-        <Link href="/listas" style={styles.link}>
-          Abrir →
-        </Link>
-      </View>
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>App Contador</Text>
+          <Link href="/contador" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
 
-      <View style={styles.cartao}>
-        <Text style={styles.cartaoTitulo}>App Bordel</Text>
-        <Link href="/bordel" style={styles.link}>
-          Abrir →
-        </Link>
-      </View>
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>App Lista</Text>
+          <Link href="/listas" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
 
-      <View style={styles.cartao}>
-        <Text style={styles.cartaoTitulo}>App Flores</Text>
-        <Link href="/flores" style={styles.link}>
-          Abrir →
-        </Link>
-      </View>
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>App Bordel</Text>
+          <Link href="/bordel" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
+
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>App Flores</Text>
+          <Link href="/flores" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
+
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>API Cachorro</Text>
+          <Link href="/cachorro" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
+
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>API CNPJ</Text>
+          <Link href="/cnpj" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
+
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>API Pokemon</Text>
+          <Link href="/pokemon" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
+      </ScrollView>
+
     </SafeAreaView>
   );
 }
