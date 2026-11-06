@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { Button, FlatList, StyleSheet, Text, TextInput, Alert  } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, Alert, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 
@@ -13,6 +13,8 @@ export default function GaragemApi() {
     const [ano, setAno] = useState("");
     const [cor, setCor] = useState("");
     const [placa, setPlaca] = useState("");
+    const [idEditando, setIdEditando] = useState(0);
+
 
     // GET: busca a lista de carros na API.
     async function carregar() {
@@ -25,21 +27,35 @@ export default function GaragemApi() {
     async function salvar() {
         //If para ver se tem campo vazio
         if (!marca.trim() || !modelo.trim() || !ano.trim() || !cor.trim() || !placa.trim()) {
-        Alert.alert("Atenção", "Preencha todos os campos!");
-        return;
-    }
-
-        await fetch(API, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                marca: marca,
-                modelo: modelo,
-                ano: ano,
-                cor: cor,
-                placa: placa,
-            }),
-        });
+            Alert.alert("Atenção", "Preencha todos os campos!");
+            return;
+        }
+        if (idEditando === 0) {
+            await fetch(API, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    marca: marca,
+                    modelo: modelo,
+                    ano: ano,
+                    cor: cor,
+                    placa: placa,
+                }),
+            });
+        } else {
+            await fetch(API + "/" + idEditando, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    marca: marca,
+                    modelo: modelo,
+                    ano: ano,
+                    cor: cor,
+                    placa: placa,
+                }),
+            });
+            setIdEditando(0);
+        }
 
         setMarca("");
         setModelo("");
@@ -51,6 +67,22 @@ export default function GaragemApi() {
         carregar();
     }
 
+    async function excluir(id) {
+        await fetch(`${API}/${id}`, {
+            method: "DELETE",
+        });
+        carregar();
+    }
+
+    async function editar(item) {
+        setIdEditando(item.id);
+        setMarca(item.marca);
+        setModelo(item.modelo);
+        setAno(item.ano);
+        setCor(item.cor);
+        setPlaca(item.placa);
+    }
+
     useEffect(() => {
         carregar();
     }, []);
@@ -59,45 +91,40 @@ export default function GaragemApi() {
         <SafeAreaView style={styles.tela} edges={["bottom"]}>
             <Stack.Screen options={{ title: "Minha Garagem" }} />
 
+            <Text style={styles.tituloCampos}>Marca do carro</Text>
             <TextInput
                 style={styles.campo}
                 value={marca}
                 onChangeText={setMarca}
-                placeholderTextColor="#555"
-                placeholder="Marca do carro"
             />
 
+            <Text style={styles.tituloCampos}>Modelo do carro</Text>
             <TextInput
                 style={styles.campo}
                 value={modelo}
                 onChangeText={setModelo}
-                placeholderTextColor="#555"
-                placeholder="Modelo do carro"
             />
 
+            <Text style={styles.tituloCampos}>Ano do carro</Text>
             <TextInput
                 style={styles.campo}
                 value={ano}
                 onChangeText={setAno}
-                placeholder="Ano do carro"
-                placeholderTextColor="#555"
                 keyboardType="numeric"
             />
 
+            <Text style={styles.tituloCampos}>Cor do carro</Text>
             <TextInput
                 style={styles.campo}
                 value={cor}
                 onChangeText={setCor}
-                placeholderTextColor="#555"
-                placeholder="Cor do carro"
             />
 
+            <Text style={styles.tituloCampos}>Placa do carro</Text>
             <TextInput
                 style={styles.campo}
                 value={placa}
                 onChangeText={setPlaca}
-                placeholderTextColor="#555"
-                placeholder="Placa do carro"
             />
 
             <Button title="Salvar carro" onPress={salvar} />
@@ -107,9 +134,21 @@ export default function GaragemApi() {
                 data={lista}
                 keyExtractor={(item) => item.id.toString()}
                 renderItem={({ item }) => (
-                    <Text style={styles.item}>
-                        {item.id} - {item.marca} {item.modelo} - {item.ano} - {item.cor} - {item.placa}
-                    </Text>
+                    <View style={styles.listinha}>
+                        <View style={styles.infoItens}>
+                            <Text style={styles.item}>Marca: {item.marca}</Text>
+                            <Text style={styles.item}>Modelo: {item.modelo}</Text>
+                            <Text style={styles.item}>Ano: {item.ano}</Text>
+                            <Text style={styles.item}>Cor: {item.cor}</Text>
+                            <Text style={styles.item}>Placa: {item.placa}</Text>
+                        </View>
+
+                        <View style={styles.botoes}>
+                            <Button title="Excluir" onPress={() => excluir(item.id)} />
+                            <Button title="Editar" onPress={() => editar(item)} />
+                        </View>
+                    </View>
+
                 )}
             />
         </SafeAreaView>
@@ -139,12 +178,34 @@ const styles = StyleSheet.create({
         marginTop: 16,
     },
 
-    item: {
+    listinha: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 12,
         backgroundColor: "#F1F3F6",
+        padding: 10,
         borderRadius: 12,
-        padding: 16,
-        marginBottom: 8,
+    },
+
+    infoItens: {
+        flexDirection: "column",
+        flex: 1,
+    },
+
+    item: {
         fontSize: 15,
         color: "#111827",
+        marginBottom: 6,
     },
+
+    botoes: {
+        flexDirection: "column",
+        gap: 10,
+        width: 110,
+    },
+
+    tituloCampos: {
+        fontSize: 18,
+    }
 });
