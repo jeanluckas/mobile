@@ -87,6 +87,13 @@ export default function App() {
             Abrir →
           </Link>
         </View>
+
+        <View style={styles.cartao}>
+          <Text style={styles.cartaoTitulo}>API Garagem</Text>
+          <Link href="/garagem_api" style={styles.link}>
+            Abrir →
+          </Link>
+        </View>
       </ScrollView>
 
     </SafeAreaView>
