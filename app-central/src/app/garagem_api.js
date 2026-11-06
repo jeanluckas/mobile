@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import { Button, FlatList, StyleSheet, Text, TextInput } from "react-native";
+import { Button, FlatList, StyleSheet, Text, TextInput, Alert  } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Stack } from "expo-router";
 
@@ -23,6 +23,12 @@ export default function GaragemApi() {
 
     // POST: cadastra um carro na API.
     async function salvar() {
+        //If para ver se tem campo vazio
+        if (!marca.trim() || !modelo.trim() || !ano.trim() || !cor.trim() || !placa.trim()) {
+        Alert.alert("Atenção", "Preencha todos os campos!");
+        return;
+    }
+
         await fetch(API, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
